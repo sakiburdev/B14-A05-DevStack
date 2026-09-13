@@ -1,13 +1,72 @@
-import Banner from "./components/Banner";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
+import Banner from "./components/Banner";
+import TechnologyCard from "./components/TechnologyCard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+export default function App() {
+  const [technologies, setTechnologies] = useState([]);
+  const [stack] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTechnologies = async () => {
+      try {
+        const response = await fetch("/data.json");
+        const data = await response.json();
+        setTechnologies(data);
+      } catch (error) {
+        console.error("Failed to load technologies data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTechnologies();
+  }, []);
+
   return (
     <>
-      <Navbar/>
-      <Banner/>
-    </>
-  )
-}
+      <Navbar />
+      <Banner />
 
-export default App
+      {loading ? (
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <h2 className="text-xl font-bold text-gray-600 animate-pulse">
+            Loading data, Please wait...
+          </h2>
+        </div>
+      ) : (
+        <div className="container mx-auto min-h-screen bg-[#ffffff] p-6 md:p-12 font-['Plus_Jakarta_Sans']"> 
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-8">
+
+              <h1 className="text-[36px] font-extrabold font-inter text-[#0F172A]  mb-2">
+                Explore the <span className="bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] bg-clip-text text-transparent">Technologies</span>
+              </h1>
+
+              <p className="font-['Plus_Jakarta_Sans'] font-normal text-[#64748B] text-[16px]">
+                Pick one technology per category to build your ideal stack.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {technologies.map((tech) => (
+                  <TechnologyCard
+                    key={tech.id}
+                    tech={tech}
+                    isAdded={stack.some((item) => item.id === tech.id)}
+                  />
+                ))}
+              </div>            
+            </div>
+          </div>
+
+          <ToastContainer position="bottom-right" autoClose={2000} />
+        </div>
+      )}
+    </>
+  );
+}
