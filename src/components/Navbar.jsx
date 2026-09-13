@@ -67,8 +67,8 @@ const Navbar = () => {
                             <a
                                 href={item.href}
                                 className={`text-[14px] font-medium transition-colors duration-200 ${item.active
-                                        ? "font-semibold text-[#DB2777]"
-                                        : "text-[#475569] hover:text-[#DB2777]"
+                                    ? "font-semibold text-[#DB2777]"
+                                    : "text-[#475569] hover:text-[#DB2777]"
                                     }`}
                             >
                                 {item.name}

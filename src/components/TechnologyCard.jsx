@@ -72,10 +72,10 @@ const TechnologyCard = ({ tech, isAdded, onAdd }) => {
                 onClick={handleCardAdd}
                 disabled={isAdded || isLoading}
                 className={`w-full py-3 rounded-xl font-medium text-[12px] font-['Plus_Jakarta_Sans'] flex items-center justify-center gap-2 transition-all ${isAdded
-                        ? "bg-pink-100 text-pink-500 cursor-not-allowed font-semibold"
-                        : isLoading
-                            ? "bg-[#333] text-white cursor-wait"
-                            : "bg-[#0A0F1D] text-white hover:bg-slate-800 active:scale-[0.98] cursor-pointer"
+                    ? "bg-pink-100 text-pink-500 cursor-not-allowed font-semibold"
+                    : isLoading
+                        ? "bg-[#333] text-white cursor-wait"
+                        : "bg-[#0A0F1D] text-white hover:bg-slate-800 active:scale-[0.98] cursor-pointer"
                     }`}
             >
                 {isLoading ? (

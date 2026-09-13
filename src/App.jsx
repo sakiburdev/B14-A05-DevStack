@@ -59,7 +59,7 @@ export default function App() {
       {loading ? (
         <div className="min-h-[50vh] flex items-center justify-center">
           <h2 className="text-xl font-bold text-gray-600 animate-pulse">
-            Loading data, Please wait...
+            Loading technologies...
           </h2>
         </div>
       ) : (
