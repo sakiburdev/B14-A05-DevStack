@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import TechnologyCard from "./components/TechnologyCard";
 import YourStack from "./components/YourStack";
+import Footer from "./components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -99,6 +100,8 @@ export default function App() {
           <ToastContainer position="bottom-right" autoClose={2000} />
         </div>
       )}
+
+      <Footer />
     </>
   );
 }
