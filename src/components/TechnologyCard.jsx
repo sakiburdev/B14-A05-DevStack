@@ -29,8 +29,8 @@ const TechnologyCard = ({ tech, isAdded, onAdd }) => {
     return (
         <div
             className={`p-6 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${isAdded
-                    ? "border-pink-300 bg-pink-50/20 shadow-sm"
-                    : "border-gray-100 bg-white shadow-sm hover:shadow-md"
+                ? "border-pink-300 bg-pink-50/20 shadow-sm"
+                : "border-gray-100 bg-white shadow-sm hover:shadow-md"
                 }`}
         >
             <div>
@@ -72,10 +72,10 @@ const TechnologyCard = ({ tech, isAdded, onAdd }) => {
                 onClick={handleCardAdd}
                 disabled={isAdded || isLoading}
                 className={`w-full py-3 rounded-xl font-medium text-[12px] font-['Plus_Jakarta_Sans'] flex items-center justify-center gap-2 transition-all cursor-pointer ${isAdded
-                        ? "bg-pink-100 text-pink-500 cursor-not-allowed font-semibold"
-                        : isLoading
-                            ? "bg-[#333] text-white cursor-wait"
-                            : "bg-[#0A0F1D] text-white hover:bg-slate-800 active:scale-[0.98]"
+                    ? "bg-pink-100 text-pink-500 cursor-not-allowed font-semibold"
+                    : isLoading
+                        ? "bg-[#333] text-white cursor-wait"
+                        : "bg-[#0A0F1D] text-white hover:bg-slate-800 active:scale-[0.98]"
                     }`}
             >
                 {isLoading ? (

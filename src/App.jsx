@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import TechnologyCard from "./components/TechnologyCard";
-import { ToastContainer } from "react-toastify";
+import YourStack from "./components/YourStack";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const [technologies, setTechnologies] = useState([]);
-  const [stack] = useState([]);
+  const [stack, setStack] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,6 +27,29 @@ export default function App() {
     fetchTechnologies();
   }, []);
 
+  const handleAddToStack = async (tech) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setStack((prev) => [...prev, tech]);
+    toast.success(`${tech.name} added to your stack!`, {
+      position: "bottom-right",
+    });
+  };
+
+  const handleRemoveFromStack = (id) => {
+    const itemToRemove = stack.find((item) => item.id === id);
+    setStack((prev) => prev.filter((item) => item.id !== id));
+    toast.error(`${itemToRemove?.name || "Item"} removed from stack!`, {
+      position: "bottom-right",
+    });
+  };
+
+  const handleRemoveAll = () => {
+    setStack([]);
+    toast.error("All technologies removed from stack!", {
+      position: "bottom-right",
+    });
+  };
+
   return (
     <>
       <Navbar />
@@ -38,8 +62,8 @@ export default function App() {
           </h2>
         </div>
       ) : (
-        <div className="container mx-auto min-h-screen bg-[#ffffff] p-6 md:p-12 font-['Plus_Jakarta_Sans']"> 
-          <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto min-h-screen bg-[#ffffff] p-6 md:p-12 font-['Plus_Jakarta_Sans']">
+          <div className="container mx-auto">
             <div className="mb-8">
 
               <h1 className="text-[36px] font-extrabold font-inter text-[#0F172A]  mb-2">
@@ -58,9 +82,17 @@ export default function App() {
                     key={tech.id}
                     tech={tech}
                     isAdded={stack.some((item) => item.id === tech.id)}
+                    onAdd={handleAddToStack}
                   />
                 ))}
-              </div>            
+              </div>
+              <div className="lg:col-span-1">
+                <YourStack
+                  stack={stack}
+                  onRemove={handleRemoveFromStack}
+                  onRemoveAll={handleRemoveAll}
+                />
+              </div>
             </div>
           </div>
 
