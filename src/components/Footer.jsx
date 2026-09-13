@@ -1,5 +1,3 @@
-import React from "react";
-
 import logo from "../assets/logo-text.png";
 
 const Footer = () => {
@@ -83,7 +81,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="max-w-full border-t border-[#F1F5F9] mt-33  bg-white">
+        <footer className="max-w-full border-t border-[#F1F5F9] mt-20  bg-white">
             <div className="container mx-auto mt-10 py-10">
 
                 {/* Main Footer */}

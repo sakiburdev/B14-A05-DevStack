@@ -2,8 +2,6 @@
 
 @import "tailwindcss";
 
-@plugin "daisyui";
-
 body {
   margin: 0;
   font-family: "Plus Jakarta Sans", sans-serif;

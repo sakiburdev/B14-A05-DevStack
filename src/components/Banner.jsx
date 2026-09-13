@@ -1,4 +1,3 @@
-import React from "react";
 import bannerImage from "../assets/banner-stack.png";
 
 const bannerData = {
